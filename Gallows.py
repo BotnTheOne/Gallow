@@ -1,6 +1,6 @@
 # РАБОТАЙ через создание функций def, разделяя каждое действие!!!!
 # Консольная игра "Виселица"
-
+# по принципу солид переименовать все методы
 
 import random
 
@@ -45,7 +45,7 @@ def is_part_in_word(human_letter, random_word):
     return False
 
 
-def add_letter(is_part_in_word):
+def add_letter_to_human_list(is_part_in_word):
     """Логика добавления правильной буквы к списку"""
     human_list = []
     while is_part_in_word == True:
@@ -55,14 +55,15 @@ def add_letter(is_part_in_word):
         exit()
 
 
-def picture():
+def picture(): #по принципу солид переименовать все методы
     """Логика отрисовки виселицы"""
     pass
+
 
 
 prog_start()
 random_word()
 print(random_word())
 # print(human_letter())
-# is_part_in_word()
+is_part_in_word(human_letter(), random_word())
 # add_letter()
