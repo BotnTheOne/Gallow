@@ -47,13 +47,6 @@ start_menu()
 
 
 
-# def random_word():
-#     """Логика выбора случайного слова"""
-#     word = random.choice(nouns())
-#     # print(word)
-#     return word
-#
-#
 # def human_letter():
 #     """Логика ввода пользователем буквы"""
 #     insert = input('Enter one letter: ')
