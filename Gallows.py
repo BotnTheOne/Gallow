@@ -45,6 +45,16 @@ def is_part_in_word(human_letter, random_word):
     return False
 
 
+def add_letter(is_part_in_word):
+    """Логика добавления правильной буквы к списку"""
+    human_list = []
+    while is_part_in_word == True:
+        human_list.append(human_letter())
+        return human_list
+    else:
+        exit()
+
+
 def picture():
     """Логика отрисовки виселицы"""
     pass
@@ -53,6 +63,6 @@ def picture():
 prog_start()
 random_word()
 print(random_word())
-# human_word()
-print(human_letter())
-print(is_part_in_word(human_letter(), random_word()))
+# print(human_letter())
+# is_part_in_word()
+# add_letter()
