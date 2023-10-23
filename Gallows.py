@@ -6,6 +6,57 @@ import random
 import re
 
 
+hangman_picture = (
+    "+---+\n"
+    "|   |\n"
+    "|\n"
+    "|\n"
+    "|\n"
+    "|\n"
+    "=========\n",
+    "+---+\n"
+    "|   |\n"
+    "|  ( )\n"
+    "|   \n"
+    "|   \n"
+    "|   \n"
+    "=========\n",
+    "=========\n"
+    "+---+\n"
+    "|   |\n"
+    "|  ( )\n"
+    "|   |\n"
+    "|   \n"
+    "|   \n"
+    "=========\n",
+    "=========\n"
+    "+---+\n"
+    "|   |\n"
+    "|  ( )\n"
+    "|  \|\n"
+    "|   \n"
+    "|   \n"
+    "=========\n",
+    "=========\n"
+    "+---+\n"
+    "|   |\n"
+    "|  ( )\n"
+    "|  \|/\n"
+    "|   \n"
+    "|   \n"
+    "=========\n",
+    "=========\n"
+    "+---+\n"
+    "|   |\n"
+    "|  ( )\n"
+    "|  \|/\n"
+    "|   |\n"
+    "|  / \\\n"
+    "|   \n"
+    "=========\n",
+)
+
+
 def start_menu():
     start_input = input('Do you want to play? (press y or n) ')
     if start_input == 'y':
@@ -32,7 +83,8 @@ def main_game_logic():
     words_list = create_words_list()
     random_word_list = get_random_from_words_list()
     hidden_word = word_to_simbols(random_word_list)
-    return words_list, random_word_list, hidden_word
+    player_letter_input = player_input()
+    return words_list, random_word_list, hidden_word, player_letter_input
 
 
 def word_to_simbols(random_word_list):
@@ -43,93 +95,28 @@ def word_to_simbols(random_word_list):
     return symbols
 
 
-def picture_of_hangman():
-    hangman_picture = [[
-        '  _____________',
-        '       │      │',
-        '       │      │',
-        '              │',
-        '              │',
-        '              │',
-        '              │',
-        '              │',
-        '              │',
-        '      ________│______'],
-        [
-            '  _____________',
-            '       │      │',
-            '       │      │',
-            '       O      │',
-            '              │',
-            '              │',
-            '              │',
-            '              │',
-            '              │',
-            '      ________│______'],
-        [
-            '  _____________',
-            '       │      │',
-            '       │      │',
-            '       O      │',
-            '       |      │',
-            '       |      │',
-            '       |      │',
-            '              │',
-            '              │',
-            '      ________│______'],
-        [
-            '  _____________',
-            '       │      │',
-            '       │      │',
-            '       O      │',
-            '      \|      │',
-            '       |      │',
-            '       |      │',
-            '              │',
-            '              │',
-            '      ________│______'],
-        [
-            '  _____________',
-            '       │      │',
-            '       │      │',
-            '       O      │',
-            '      \|/     │',
-            '       |      │',
-            '       |      │',
-            '              │',
-            '              │',
-            '      ________│______'],
-        [
-            '  _____________',
-            '       │      │',
-            '       │      │',
-            '       O      │',
-            '      \|/     │',
-            '       |      │',
-            '       |      │',
-            '      /       │',
-            '              │',
-            '      ________│______'],
-        [
-            '  _____________',
-            '       │      │',
-            '       │      │',
-            '       O      │',
-            '      \|/     │',
-            '       |      │',
-            '       |      │',
-            '      / \     │',
-            '              │',
-            '      ________│______']
-    ]
+def player_input():
+    players_input = input('Enter your letter here: ')
+    player_word = []
+    player_mistake = 0
+    if players_input in get_random_from_words_list():
+        player_word.append(players_input)
+        print(player_word) # удалить
+    else:
+        show_of_draw_hangman(player_mistake)
+        player_mistake += 1 # проверь данное выражение(пострайся пройтись циклом while по ошибкам)
+    return players_input
 
 
-def mistake_counter():
-    pass
+
+# def mistake_counter():
+#     for i in picture_of_hangman():
+#         print(i)
+#     # print(picture_of_hangman())
 
 
-def show_of_mistake_counter():
-    pass
+def show_of_draw_hangman(index):
+    print(hangman_picture[index])
 
 
 
