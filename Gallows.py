@@ -70,7 +70,7 @@ def start_menu():
 
 
 def create_words_list():
-    words_list = ['абажур', 'баклан', 'гонка']
+    words_list = ['баклажка']
     return words_list
 
 
@@ -95,29 +95,37 @@ def word_to_simbols(random_word_list):
     return symbols
 
 
+used_letters_list = ''
+mistake_count = 0
+
+
 def player_input():
-    players_input = input('Enter your letter here: ')
-    player_word = []
-    player_mistake = 0
-    if players_input in get_random_from_words_list():
-        player_word.append(players_input)
-        print(player_word) # удалить
+    inputed_letter = input('Enter your letter here: ')
+    global mistake_count
+    global used_letters_list
+    word = get_random_from_words_list()
+    if inputed_letter.lower() in word.lower():
+        print(used_letters_list) # удалить
     else:
-        show_of_draw_hangman(player_mistake)
-        player_mistake += 1 # проверь данное выражение(пострайся пройтись циклом while по ошибкам)
-    return players_input
-
-
-
-# def mistake_counter():
-#     for i in picture_of_hangman():
-#         print(i)
-#     # print(picture_of_hangman())
+        if mistake_count == 5:
+            print('You loose this game!')
+            start_menu()
+        used_letters_list = check_inputed_letters(inputed_letter, used_letters_list)
+        print(used_letters_list) # удалить
+        mistake_count += 1
+    show_of_draw_hangman(mistake_count)
+    print(f'Count of mistakes: {mistake_count}')
+    return player_input()
 
 
 def show_of_draw_hangman(index):
     print(hangman_picture[index])
 
+
+def check_inputed_letters(inputed_letter, used_letters_list):
+    if inputed_letter not in used_letters_list:
+        used_letters_list += inputed_letter
+    return used_letters_list
 
 
 start_menu()
