@@ -1,6 +1,6 @@
 # РАБОТАЙ через создание функций def, разделяя каждое действие!!!!
 # Консольная игра "Виселица"
-
+# Допилить функцию, которая заменяет палки на буквы рандомного слова по индексу (работай через енумерате и две переменные)
 
 import random
 import re
@@ -111,7 +111,7 @@ def player_input():
             print('You loose this game!')
             start_menu()
         used_letters_list = check_inputed_letters(inputed_letter, used_letters_list)
-        print(used_letters_list) # удалить
+        print(used_letters_list)
         mistake_count += 1
     show_of_draw_hangman(mistake_count)
     print(f'Count of mistakes: {mistake_count}')
