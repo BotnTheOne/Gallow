@@ -100,7 +100,7 @@ simbols = list(word_to_simbols(random_word_list=get_random_from_words_list()))
 
 
 def player_input():
-    global simbols_word
+    global simbols_word, mistake_count
     global used_letters_list
     word = get_random_from_words_list()
     final_word = word[:]
@@ -110,25 +110,20 @@ def player_input():
         for ref_indx, let in enumerate(final_word):
             if let == inputed_letter:
                 simbols[ref_indx] = inputed_letter
-                show_of_draw_hangman(mistake_count)
                 simbols_word = ''.join(simbols)
-                print(f'Word is: {simbols_word}')
-                print(f'Count of mistakes: {mistake_count}')
-                print(f'Used letters: {used_letters_list}')
         if inputed_letter not in final_word:
             used_letters_list = check_inputed_letters(inputed_letter, used_letters_list)
             mistake_count += len(used_letters_list)
         if mistake_count == 5:
             print('You loose the game!')
             start_menu()
+        if simbols_word == final_word:
+            print(f'You won! The word was: {simbols_word}')
+            start_menu()
         show_of_draw_hangman(mistake_count)
         print(f'Word is: {simbols_word}')
         print(f'Count of mistakes: {mistake_count}')
         print(f'Used letters: {used_letters_list}')
-        if simbols_word == final_word:
-            print(f'You won! The word was: {simbols_word}')
-            start_menu()
-
 
     # else:
     #     if mistake_count == 5:
