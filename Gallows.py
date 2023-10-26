@@ -70,7 +70,7 @@ def start_menu():
 
 
 def create_words_list():
-    words_list = ['баклажка']
+    words_list = ['zara']
     return words_list
 
 
@@ -89,33 +89,58 @@ def main_game_logic():
 
 def word_to_simbols(random_word_list):
     random_word = random_word_list.lower()
-    symbols = re.sub(r'[а-я]', '_', random_word)
+    symbols = re.sub(r'[a-z]', '_', random_word)
     print(symbols)
     print(random_word)  # удалить после тестов
     return symbols
 
 
 used_letters_list = ''
-mistake_count = 0
+simbols = list(word_to_simbols(random_word_list=get_random_from_words_list()))
 
 
 def player_input():
-    inputed_letter = input('Enter your letter here: ')
-    global mistake_count
+    global simbols_word
     global used_letters_list
     word = get_random_from_words_list()
-    if inputed_letter.lower() in word.lower():
-        print(used_letters_list) # удалить
-    else:
+    final_word = word[:]
+    while simbols != final_word:
+        inputed_letter = input('Enter your letter here: ')
+        mistake_count = 0
+        for ref_indx, let in enumerate(final_word):
+            if let == inputed_letter:
+                simbols[ref_indx] = inputed_letter
+                show_of_draw_hangman(mistake_count)
+                simbols_word = ''.join(simbols)
+                print(f'Word is: {simbols_word}')
+                print(f'Count of mistakes: {mistake_count}')
+                print(f'Used letters: {used_letters_list}')
+        if inputed_letter not in final_word:
+            used_letters_list = check_inputed_letters(inputed_letter, used_letters_list)
+            mistake_count += len(used_letters_list)
         if mistake_count == 5:
-            print('You loose this game!')
+            print('You loose the game!')
             start_menu()
-        used_letters_list = check_inputed_letters(inputed_letter, used_letters_list)
-        print(used_letters_list)
-        mistake_count += 1
-    show_of_draw_hangman(mistake_count)
-    print(f'Count of mistakes: {mistake_count}')
-    return player_input()
+        show_of_draw_hangman(mistake_count)
+        print(f'Word is: {simbols_word}')
+        print(f'Count of mistakes: {mistake_count}')
+        print(f'Used letters: {used_letters_list}')
+        if simbols_word == final_word:
+            print(f'You won! The word was: {simbols_word}')
+            start_menu()
+
+
+    # else:
+    #     if mistake_count == 5:
+    #         print('You loose this game!')
+    #         start_menu()
+    #     used_letters_list = check_inputed_letters(inputed_letter, used_letters_list)
+    #     print(used_letters_list)
+    #     mistake_count += 1
+    # show_of_draw_hangman(mistake_count)
+    # print(f'Count of mistakes: {mistake_count}')
+    # print(f'Used letters: {used_letters_list}')
+    # # return player_input()
 
 
 def show_of_draw_hangman(index):
