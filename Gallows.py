@@ -1,8 +1,8 @@
 # РАБОТАЙ через создание функций def, разделяя каждое действие!!!!
 # Консольная игра "Виселица"
 # Добавить валидацию символов
-# Откорректировать внешний вид вывода результатов в соответствии с Википедией
 # Допилить запуск программы через __name__ == '__main__':
+# Допилить рандомайзер слов: слова должны выбираться из текстового файла
 
 import random
 import re
@@ -72,7 +72,7 @@ def start_menu():
 
 
 def create_words_list():
-    words_list = ['zara']
+    words_list = ['zaraza']
     return words_list
 
 
@@ -82,24 +82,22 @@ def get_random_from_words_list():
 
 
 def main_game_logic():
-    words_list = create_words_list()
-    random_word_list = get_random_from_words_list()
-    hidden_word = word_to_simbols(random_word_list)
+    hidden_word = word_to_simbols()
     player_letter_input = player_input()
-    return words_list, random_word_list, hidden_word, player_letter_input
+    return hidden_word, player_letter_input
 
 
-def word_to_simbols(random_word_list):
-    random_word = random_word_list.lower()
+def word_to_simbols():
+    random_word = get_random_from_words_list().lower()
     symbols = re.sub(r'[a-z]', '_', random_word)
-    print(symbols)
-    print(random_word)  # удалить после тестов
+    # print(symbols)
+    # print(random_word)  # удалить после тестов
     return symbols
 
 
 def player_input():
     used_letters_list = ''
-    simbols = list(word_to_simbols(random_word_list=get_random_from_words_list()))
+    simbols = list(word_to_simbols())
     simbols_word = ''
     word = get_random_from_words_list()
     final_word = word[:]
