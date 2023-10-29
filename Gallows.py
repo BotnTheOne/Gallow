@@ -126,18 +126,6 @@ def player_input():
         print(f'Count of mistakes: {mistake_count}')
         print(f'Used letters: {used_letters_list}')
 
-    # else:
-    #     if mistake_count == 5:
-    #         print('You loose this game!')
-    #         start_menu()
-    #     used_letters_list = check_inputed_letters(inputed_letter, used_letters_list)
-    #     print(used_letters_list)
-    #     mistake_count += 1
-    # show_of_draw_hangman(mistake_count)
-    # print(f'Count of mistakes: {mistake_count}')
-    # print(f'Used letters: {used_letters_list}')
-    # # return player_input()
-
 
 def show_of_draw_hangman(index):
     print(hangman_picture[index])
